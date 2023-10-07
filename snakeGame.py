@@ -4,7 +4,7 @@ import random
 
 done = False
 score = 0
-
+speed = 0.05
 # screen
 screen = Screen()
 screen.setup(600, 600)
@@ -90,7 +90,14 @@ for pos in startPos:
 
 while not done:
     screen.update() # screen.tracer와 같이 이용
-    time.sleep(0.05) # 뱀 속도 조절
+    
+    time.sleep(speed) # 뱀 속도 조절
+    if score == 10:
+        speed = 0.03
+    elif score == 20:
+        speed = 0.02
+    elif score == 30:
+        speed = 0.01
     for i in range(len(snakeBody) -1, 0, -1):
         snakeBody[i].goto(snakeBody[i - 1].pos())
     snakeBody[0].forward(10)
